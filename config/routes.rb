@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  root 'welcome#home'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,4 +53,13 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # get "/login", to: redirect("/auth/google_oauth2")
+  root 'welcome#home'
+
+  get 'welcome/home' => 'welcome#home'
+
+  get '/auth/:provider/callback', to: "sessions#create"
+
+  post '/logout' => 'sessions#destroy'
 end
