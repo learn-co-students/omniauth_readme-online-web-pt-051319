@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'sessions/create'
+
+  resources :users
   root 'welcome#home'
+
+  get '/auth/google_oauth2/callback', to: 'sessions#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
